@@ -700,7 +700,8 @@ function renderIndex() {
   }
 
   grid.innerHTML = slice.map((post, i) => `
-    <article class="post-card" onclick="openPost(${post.id})" role="button" tabindex="0"
+    <article title="Question: ${post.subtitle}"
+             class="post-card" onclick="openPost(${post.id})" role="button" tabindex="0"
              onkeydown="if(event.key==='Enter')openPost(${post.id})">
       <img class="card-thumb"
            src="${escAttr(post.thumbnail)}"
