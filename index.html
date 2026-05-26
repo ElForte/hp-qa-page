@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H!P Q&amp;A Translations — Since 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── LIGHT THEME TOKENS ───────────────────────────────── */
+    :root,
+    [data-theme="light"] {
+      --blue-deep:    #0d5a8e;
+      --blue-mid:     #1560a0;
+      --blue-main:    #1a7ec0;
+      --blue-light:   #2a9ad6;
+      --blue-pale:    #d6eaf8;
+      --bg:           #f4f8fc;
+      --surface:      #ffffff;
+      --surface-2:    #eaf3fb;
+      --text-dark:    #0a2f4a;
+      --text-mid:     #2c5f80;
+      --text-muted:   #6a9bbf;
+      --border:       #c2ddef;
+      --shadow:       rgba(13, 90, 142, 0.12);
+      --shadow-hover: rgba(13, 90, 142, 0.28);
+      --header-grad:  linear-gradient(135deg, #0d5a8e 0%, #1a7ec0 100%);
+      --footer-bg:    #0d5a8e;
+      --toggle-bg:    rgba(255,255,255,0.18);
+      --toggle-icon:  '☀️';
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Raleway', sans-serif;
+    }
+
+    /* ── DARK THEME TOKENS ────────────────────────────────── */
+    [data-theme="dark"] {
+      --blue-deep:    #5ab3e8;
+      --blue-mid:     #7ac4f0;
+      --blue-main:    #4aaee0;
+      --blue-light:   #6ac4f5;
+      --blue-pale:    #0d2a40;
+      --bg:           #0a1520;
+      --surface:      #111e2b;
+      --surface-2:    #0d1a26;
+      --text-dark:    #d8eaf8;
+      --text-mid:     #8ab8d8;
+      --text-muted:   #4a7a9b;
+      --border:       #1e3a52;
+      --shadow:       rgba(0, 0, 0, 0.4);
+      --shadow-hover: rgba(0, 0, 0, 0.6);
+      --header-grad:  linear-gradient(135deg, #071525 0%, #0d3a5c 100%);
+      --footer-bg:    #060e18;
+      --toggle-bg:    rgba(255,255,255,0.10);
+      --toggle-icon:  '🌙';
+    }
+
+    /* ── RESET & BASE ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-dark);
+      min-height: 100vh;
+      line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--blue-main); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HEADER ────────────────────────────────────────────── */
+    .site-header {
+      background: var(--header-grad);
+      padding: 0;
+      box-shadow: 0 3px 16px var(--shadow-hover);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .logo-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 14px 0;
+      cursor: pointer;
+    }
+    .logo-fallback .logo-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .logo-fallback .logo-since {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      color: rgba(255,255,255,0.72);
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    /* ── DARK MODE TOGGLE ──────────────────────────────────── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--toggle-bg);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 6px 14px 6px 10px;
+      cursor: pointer;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .theme-toggle .toggle-track {
+      width: 34px;
+      height: 18px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 9px;
+      position: relative;
+      transition: background 0.25s;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .theme-toggle .toggle-track {
+      background: var(--blue-main);
+    }
+    .theme-toggle .toggle-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.25s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+    [data-theme="dark"] .theme-toggle .toggle-thumb {
+      transform: translateX(16px);
+    }
+    .toggle-label-light { display: inline; }
+    .toggle-label-dark  { display: none; }
+    [data-theme="dark"] .toggle-label-light { display: none; }
+    [data-theme="dark"] .toggle-label-dark  { display: inline; }
+
+    /* ── LAYOUT ────────────────────────────────────────────── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    /* ── INDEX PAGE ────────────────────────────────────────── */
+    .index-heading {
+      padding: 44px 0 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .index-heading h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      color: var(--blue-deep);
+      letter-spacing: 0.04em;
+    }
+    .index-heading p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── GRID ──────────────────────────────────────────────── */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+      padding-bottom: 16px;
+      text-align: left;
+    }
+
+    /* ── CARD ──────────────────────────────────────────────── */
+    .post-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.3s ease;
+      display: flex;
+      flex-direction: row;   /* ← horizontal now */
+      align-items: stretch;
+    }
+    .post-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px var(--shadow-hover);
+      border-color: var(--blue-light);
+    }
+    .card-thumb {
+      width: 90px;
+      height: 90px;
+      flex-shrink: 0;
+      object-fit: cover;
+      background: var(--blue-pale);
+    }
+    .card-body {
+      padding: 12px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+    .card-date {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.3;
+      transition: color 0.3s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card-subtitle {
+      font-size: 0.80rem;
+      color: var(--text-mid);
+      margin-top: 3px;
+      line-height: 1.4;
+      transition: color 0.3s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card-arrow {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--blue-main);
+      text-transform: uppercase;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .card-arrow::after { content: '→'; }
+
+    /* ── PAGINATION ────────────────────────────────────────── */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 40px 0 48px;
+      flex-wrap: wrap;
+    }
+    .pagination button {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-mid);
+      padding: 8px 14px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      min-width: 38px;
+    }
+    .pagination button:hover:not(:disabled) {
+      background: var(--blue-pale);
+      border-color: var(--blue-main);
+      color: var(--blue-deep);
+    }
+    .pagination button.active {
+      background: var(--blue-main);
+      color: #fff;
+      border-color: var(--blue-main);
+      font-weight: 600;
+    }
+    .pagination button:disabled { opacity: 0.35; cursor: default; }
+    .pagination .page-info {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      padding: 0 8px;
+    }
+
+    /* ── POST PAGE ─────────────────────────────────────────── */
+    .post-back { padding: 28px 0 0; text-align: left; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-main);
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      transition: color 0.15s;
+    }
+    .back-btn::before { content: '←'; font-size: 1em; }
+    .back-btn:hover { color: var(--blue-deep); }
+
+    .post-header {
+      padding: 28px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 36px;
+    }
+    .post-date {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .post-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+      font-weight: 300;
+      color: var(--blue-deep);
+      line-height: 1.25;
+      letter-spacing: 0.02em;
+      transition: color 0.3s;
+    }
+    .post-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-mid);
+      margin-top: 10px;
+      transition: color 0.3s;
+    }
+    .post-original-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--blue-main);
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 3px;
+      background: var(--surface-2);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .post-original-link:hover {
+      background: var(--blue-pale);
+      border-color: var(--blue-light);
+      text-decoration: none;
+    }
+
+    /* ── Q&A SECTION ───────────────────────────────────────── */
+    .qa-section { margin-bottom: 48px; }
+    .qa-block {
+      margin-bottom: 36px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+      transition: background 0.3s ease, border-color 0.3s ease;
+      text-align: left;
+    }
+    .qa-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      background: var(--blue-pale);
+    }
+    .qa-answer {
+      padding: 24px 28px;
+      font-size: 0.97rem;
+      line-height: 1.82;
+      color: var(--text-dark);
+      border-top: 1px solid var(--border);
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    /* ── BB CODE STYLES ────────────────────────────────────── */
+    .bb-bold { font-weight: 700; }
+    .bb-italic { font-style: italic; }
+    .bb-underline { text-decoration: underline; }
+    .bb-strike { text-decoration: line-through; }
+    .bb-quote { background: #f0f4f8; border-left: 3px solid #1a7ec0; padding: 8px 14px;
+      margin: 8px 0; font-style: italic; color: #555; border-radius: 0 4px 4px 0; display: block; }
+    .bb-list { padding-left: 20px; margin: 6px 0; }
+    .bb-center { text-align: center; display: block; }
+    .bb-size-large { font-size: 1.25em; }
+    .bb-size-small { font-size: .82em; }
+    .bb-spoiler-block { margin: 8px 0; }
+    .bb-spoiler-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #212529;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 12px;
+      font-size: .85rem;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .bb-spoiler-btn:hover { background: #343a40; }
+    .bb-spoiler-content {
+      display: none;
+      margin-top: 6px;
+      padding: 12px 14px;
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      line-height: 1.7;
+    }
+    .bb-spoiler-content.open { display: block; }
+
+    /* ── POST FOOTER ───────────────────────────────────────── */
+    .post-footer-section {
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+      padding: 24px 0 48px;
+    }
+    .post-footer-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .post-footer-content { font-size: 0.88rem; color: var(--text-mid); }
+
+    /* ── SITE FOOTER ───────────────────────────────────────── */
+    .site-footer {
+      background: var(--footer-bg);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      transition: background 0.3s;
+      margin-top: auto;   /* ← pushes footer to bottom */
+    }
+    .site-footer span { color: rgba(255,255,255,0.85); }
+
+    /* ── LOADING / ERROR ───────────────────────────────────── */
+    .loading-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      gap: 16px;
+      color: var(--text-muted);
+      grid-column: 1 / -1;
+    }
+    .spinner {
+      width: 36px; height: 36px;
+      border: 3px solid var(--blue-pale);
+      border-top-color: var(--blue-main);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .header-inner { padding: 0 16px; }
+      .container { padding: 0 16px; }
+      .posts-grid { grid-template-columns: 1fr; gap: 18px; }
+      .qa-answer { padding: 16px 18px; }
+      .index-heading { padding: 28px 0 18px; }
+      .theme-toggle .toggle-label-light,
+      .theme-toggle .toggle-label-dark { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-fallback" id="headerLogo" onclick="showIndex()">
+      <span class="logo-title">Q&amp;A Translations</span>
+      <span class="logo-since">Since 2026</span>
+    </div>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <span class="toggle-label-light">Light</span>
+      <span class="toggle-label-dark">Dark</span>
+    </button>
+  </div>
+</header>
+
+<!-- ══ INDEX PAGE ══════════════════════════════════════════ -->
+<div id="indexPage" class="page active">
+  <div class="container">
+    <div class="index-heading">
+      <h1>Hello! Q&amp;A Translations</h1>
+      <p>Latest coverage from the Hello! Project community</p>
+    </div>
+    <div id="postsGrid" class="posts-grid">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <span>Loading posts…</span>
+      </div>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</div>
+
+<!-- ══ POST PAGE ════════════════════════════════════════════ -->
+<div id="postPage" class="page">
+  <div class="container">
+    <div class="post-back">
+      <button class="back-btn" onclick="showIndex()">Back to index</button>
+    </div>
+    <div id="postContent"></div>
+  </div>
+</div>
+
+<!-- ══ SITE FOOTER ══════════════════════════════════════════ -->
+<footer class="site-footer">
+  <span>Q&amp;A Translations Fan Site</span> - Since 2026 · Maintained by
+  <a style="color: inherit;" href="https://www.hello-online.org/index.php?/user/13960-ro-kun/" target="_blank" rel="noopener">rokun</a>
+  · Made by 
+  <a style="color: inherit;" href="https://x.com/White0Forte/" target="_blank" rel="noopener">WhiteForte</a>
+  · Not affiliated with Up-Front Group
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   THEME
+══════════════════════════════════════════════════════════ */
+function toggleTheme() {
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  try { localStorage.setItem('hp-theme', next); } catch {}
+}
+
+// Restore saved theme immediately (avoid flash)
+(function() {
+  try {
+    const saved = localStorage.getItem('hp-theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  } catch {}
+})();
+
+/* ══════════════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════════════ */
+const PER_PAGE  = 10;
+let allPosts    = [];
+let currentPage = 1;
+
+/* ══════════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════════ */
+async function init() {
+  try {
+    const base = detectBase();
+    const res  = await fetch(base + 'posts.json');
+    if (!res.ok) throw new Error('Network response not ok');
+    const data = await res.json();
+    allPosts = data.posts || [];
+    allPosts.sort((a, b) => new Date(b.posted_on) - new Date(a.posted_on));
+    renderIndex();
+  } catch (err) {
+    document.getElementById('postsGrid').innerHTML =
+      `<div class="loading-state">
+        Failed to load posts.<br>
+      </div>`;
+  }
+}
+
+function detectBase() {
+  const path = window.location.pathname;
+  const dir  = path.endsWith('/') ? path : path.substring(0, path.lastIndexOf('/') + 1);
+  return dir;
+}
+
+/* ══════════════════════════════════════════════════════════
+   BB CODE PARSER
+══════════════════════════════════════════════════════════ */
+function parseBBCode(text) {
+  if (!text) return '';
+  let out = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  out = out.replace(/\[b\]([\s\S]*?)\[\/b\]/gi,'<strong class="bb-bold">$1</strong>');
+  out = out.replace(/\[i\]([\s\S]*?)\[\/i\]/gi,'<em class="bb-italic">$1</em>');
+  out = out.replace(/\[u\]([\s\S]*?)\[\/u\]/gi,'<span class="bb-underline">$1</span>');
+  out = out.replace(/\[s\]([\s\S]*?)\[\/s\]/gi,'<span class="bb-strike">$1</span>');
+  out = out.replace(/\[color=([^\]]+)\]([\s\S]*?)\[\/color\]/gi,
+    (_,c,t)=>`<span style="color:${/^(#[0-9a-fA-F]{3,8}|[a-zA-Z]+)$/.test(c)?c:'inherit'}">${t}</span>`);
+  out = out.replace(/\[quote(?:=([^\]]*))?\]([\s\S]*?)\[\/quote\]/gi,
+    (_,a,c)=>`<blockquote class="bb-quote">${a?`<small style="font-style:normal;font-weight:600">${a} wrote:</small>`:''}${c}</blockquote>`);
+  out = out.replace(/\[url=([^\]]+)\]([\s\S]*?)\[\/url\]/gi,
+    (_,h,l)=>`<a href="${h}" target="_blank" rel="noopener">${l}</a>`);
+  out = out.replace(/\[url\]([\s\S]*?)\[\/url\]/gi,
+    (_,h)=>`<a href="${h}" target="_blank" rel="noopener">${h}</a>`);
+  out = out.replace(/\[list\]([\s\S]*?)\[\/list\]/gi,(_,inner)=>{
+    const items=inner.split(/\[\*\]/).filter(i=>i.trim());
+    return `<ul class="bb-list">${items.map(i=>`<li>${i.trim()}</li>`).join('')}</ul>`;
+  });
+  out = out.replace(/\[center\]([\s\S]*?)\[\/center\]/gi,'<span class="bb-center">$1</span>');
+  out = out.replace(/\[size=large\]([\s\S]*?)\[\/size\]/gi,'<span class="bb-size-large">$1</span>');
+  out = out.replace(/\[size=small\]([\s\S]*?)\[\/size\]/gi,'<span class="bb-size-small">$1</span>');
+  out = out.replace(/\n/g,'<br/>');
+  out = out.replace(/\[img\]([\s\S]*?)\[\/img\]/gi,
+    (_, src) => `<img src="${src}" alt="" style="max-width:100%;border-radius:4px;margin:6px 0;display:block" loading="lazy" onerror="this.style.opacity='.2'" />`);
+  out = out.replace(/\[spoiler\]([\s\S]*?)\[\/spoiler\]/gi,
+    (_, content) => `<div class="bb-spoiler-block">
+      <button class="bb-spoiler-btn" onclick="this.nextElementSibling.classList.toggle('open');this.innerHTML=this.nextElementSibling.classList.contains('open')?'<i class=\\'bi bi-eye-slash\\'></i> Hide spoiler':'<i class=\\'bi bi-eye\\'></i> Show spoiler'">
+        <i class="bi bi-eye"></i> Show spoiler
+      </button>
+      <div class="bb-spoiler-content">${content}</div>
+    </div>`);
+  return out;
+}
+
+function sanitizeColor(c) {
+  return /^(#[0-9a-fA-F]{3,8}|[a-zA-Z]+)$/.test(c) ? c : 'inherit';
+}
+function sanitizeUrl(u) {
+  try {
+    const parsed = new URL(u);
+    if (['http:', 'https:', 'mailto:'].includes(parsed.protocol)) return u;
+  } catch {}
+  return '#';
+}
+
+/* ══════════════════════════════════════════════════════════
+   FORMAT DATE
+══════════════════════════════════════════════════════════ */
+function formatDate(str) {
+  try {
+    const d = new Date(str + 'T00:00:00');
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  } catch { return str; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   RENDER INDEX
+══════════════════════════════════════════════════════════ */
+function renderIndex() {
+  const start = (currentPage - 1) * PER_PAGE;
+  const slice = allPosts.slice(start, start + PER_PAGE);
+  const grid  = document.getElementById('postsGrid');
+
+  if (!slice.length) {
+    grid.innerHTML = '<div class="loading-state">No posts found.</div>';
+    document.getElementById('pagination').innerHTML = '';
+    return;
+  }
+
+  grid.innerHTML = slice.map((post, i) => `
+    <article class="post-card" onclick="openPost(${post.id})" role="button" tabindex="0"
+             onkeydown="if(event.key==='Enter')openPost(${post.id})">
+      <img class="card-thumb"
+           src="${escAttr(post.thumbnail)}"
+           alt="${escAttr(stripBB(post.title))}"
+           loading="${i < 4 ? 'eager' : 'lazy'}"
+           onerror="this.style.background='var(--blue-pale)';this.removeAttribute('src')" />
+      <div class="card-body">
+        <div class="card-date">${formatDate(post.posted_on)}</div>
+        <div class="card-title">${post.title}</div>
+        <div class="card-subtitle">Question: ${escHtml(post.subtitle)}</div>
+        <div class="card-arrow">Read more</div>
+      </div>
+    </article>
+  `).join('');
+
+  renderPagination();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ══════════════════════════════════════════════════════════
+   PAGINATION
+══════════════════════════════════════════════════════════ */
+function renderPagination() {
+  const total = Math.ceil(allPosts.length / PER_PAGE);
+  if (total <= 1) { document.getElementById('pagination').innerHTML = ''; return; }
+
+  let html = '';
+  html += `<button ${currentPage===1?'disabled':''} onclick="goPage(${currentPage-1})">‹ Prev</button>`;
+
+  for (let p = 1; p <= total; p++) {
+    if (total > 7 && Math.abs(p - currentPage) > 2 && p !== 1 && p !== total) {
+      if (p === 2 || p === total - 1) { html += `<span class="page-info">…</span>`; }
+      continue;
+    }
+    html += `<button class="${p===currentPage?'active':''}" onclick="goPage(${p})">${p}</button>`;
+  }
+
+  html += `<button ${currentPage===total?'disabled':''} onclick="goPage(${currentPage+1})">Next ›</button>`;
+  document.getElementById('pagination').innerHTML = html;
+}
+
+function goPage(n) {
+  const total = Math.ceil(allPosts.length / PER_PAGE);
+  if (n < 1 || n > total) return;
+  currentPage = n;
+  renderIndex();
+}
+
+/* ══════════════════════════════════════════════════════════
+   OPEN POST
+══════════════════════════════════════════════════════════ */
+function openPost(id) {
+  const post = allPosts.find(p => p.id === id);
+  if (!post) return;
+
+  document.getElementById('postContent').innerHTML = `
+    <div class="post-header">
+      <div class="post-date">${formatDate(post.posted_on)}</div>
+      <h1 class="post-title">${post.title}</h1>
+      <p class="post-subtitle">${escHtml(post.subtitle)}</p>
+    </div>
+    <div class="qa-section">${parseBBCode(post.content)}</div>
+  `;
+
+  show('postPage');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+/* ══════════════════════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════════════════════ */
+function showIndex() {
+  show('indexPage');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function show(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+}
+
+/* ══════════════════════════════════════════════════════════
+   HELPERS
+══════════════════════════════════════════════════════════ */
+function escHtml(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function escAttr(s) { return escHtml(s); }
+function stripBB(s) { return String(s||'').replace(/\[[^\]]*\]/g,''); }
+
+/* ══════════════════════════════════════════════════════════
+   LOGO: try image, fall back to text
+══════════════════════════════════════════════════════════ */
+function loadLogo() {
+  const img = new Image();
+  img.onload = () => {
+    const el = document.getElementById('headerLogo');
+    el.innerHTML = '';
+    el.style.padding = '0';
+    img.style.cssText = 'height:60px;width:auto;cursor:pointer;display:block';
+    el.appendChild(img);
+  };
+  img.onerror = () => {};
+  img.src = detectBase() + 'assets/logohp.png';
+  img.alt = 'Hello! Project';
+}
+
+/* ══════════════════════════════════════════════════════════
+   START
+══════════════════════════════════════════════════════════ */
+//loadLogo();
+init();
+</script>
+</body>
+</html>
